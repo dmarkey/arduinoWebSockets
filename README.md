@@ -1,7 +1,7 @@
 WebSocket Server and Client for Arduino
 ===========================================
 
-a WebSocket Server and Client for Arduino based on RFC6455.
+a WebSocket Server and Client for Arduino based on RFC6455. This fork is known to work with an AVR arduino with an Ethernet shield
 
 ##### Supported features of RFC6455 #####
  - text frame
