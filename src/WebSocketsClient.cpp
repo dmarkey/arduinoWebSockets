@@ -348,7 +348,7 @@ void WebSocketsClient::handleHeader(WSclient_t * client) {
         DEBUG_WEBSOCKETS("[WS-Client][handleHeader]  - cExtensions: %s\n", client->cExtensions.c_str());
         DEBUG_WEBSOCKETS("[WS-Client][handleHeader]  - cVersion: %d\n", client->cVersion);
 
-        bool ok = (client->cIsUpgrade && client->cIsWebsocket);
+        bool ok = (client->cIsWebsocket);
 
         if(ok) {
             switch(client->cCode) {

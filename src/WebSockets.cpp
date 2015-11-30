@@ -32,6 +32,8 @@ extern "C" {
 #include <Hash.h>
 #endif
 
+#include <sha1.h>
+
 /**
  *
  * @param client WSclient_t *  ptr to the client struct
@@ -327,13 +329,17 @@ void WebSockets::handleWebsocket(WSclient_t * client) {
  * @return String Accept Key
  */
 String WebSockets::acceptKey(String clientKey) {
-    uint8_t sha1HashBin[20] = { 0 };
+    //uint8_t sha1HashBin[20] = { 0 };
+    uint8_t *hash;
 #ifdef ESP8266
     sha1(clientKey + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11", &sha1HashBin[0]);
 #else
-#error todo implement sha1 for AVR
+    Sha1.init();
+    Sha1.print(clientKey + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11");
+    hash = Sha1.result();
+
 #endif
-    String key = base64_encode(sha1HashBin, 20);
+    String key = base64_encode(hash, 20);
     key.trim();
 
     return key;
